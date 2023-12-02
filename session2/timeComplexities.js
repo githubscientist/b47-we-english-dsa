@@ -296,6 +296,151 @@
 
     Time Complexity = ?
 
-    Solution:
+    Solution: 
 
+    int i, j, k = 0; => O(1) => executions = 1
+
+    outer loop: for (i = n / 2; i <= n; i++) => executions = n / 2 + 1
+
+    inner loop: for (j = 2; j <= n; j = j * 2)
+
+        Assume some values for n
+
+        n = 5, j = 2, 4 => 2 executions
+        n = 6, j = 2, 4 => 2 executions
+        n = 10, j = 2, 4, 8 => 3 executions
+        n = 20, j = 2, 4, 8, 16 => 4 executions
+        n = 25, j = 2, 4, 8, 16 => 4 executions
+        n = 30, j = 2, 4, 8, 16 => 4 executions
+        n = 40, j = 2, 4, 8, 16, 32 => 5 executions
+
+        2^2 = 4 => 2 executions
+        2^3 = 8 => 3 executions
+        2^4 = 16 => 4 executions
+        2^5 = 32 => 5 executions
+
+        2^x = n, solve for x?
+
+        take log2 on both sides
+
+        log2(2^x) = log2(n)
+        x log2(2) = log2(n)
+        x(1) = log2(n) [since, log2(2) = 1]
+        x = log2(n)
+
+        so, for a given n, the number of executions of the inner loop is log2(n)
+
+        total time complexity, T(n) = 1 + (n/2 + 1) * log2(n)
+                                    = 1 + n/2 * log2(n) + log2(n)
+                                    = n/2 * log2(n) + log2(n) [as 1 is a constant]
+                                    = n/2 * log2(n) [as n is the dominant term or highest degree term]
+                                    = 1/2 * n * log2(n)
+                                    = O(nlogn) [as 1/2 is a constant]
+*/
+
+// check the number of executions of the inner loop for different values of n
+// console.log(`For n = 5, Executions = ${Math.log2(5)}`);
+// console.log(`For n = 6, Executions = ${Math.log2(6)}`);
+// console.log(`For n = 10, Executions = ${Math.log2(10)}`);
+// console.log(`For n = 20, Executions = ${Math.log2(20)}`);
+// console.log(`For n = 25, Executions = ${Math.log2(25)}`);
+// console.log(`For n = 30, Executions = ${Math.log2(30)}`);
+// console.log(`For n = 40, Executions = ${Math.log2(40)}`);
+
+/* 
+    Time Complexity: 2^n
+    
+    Example: Given an array of size N, to find all the subsets of the array
+
+    input: [1, 2, 3]
+
+    output: 
+
+    0: []
+    1: [1], [2], [3]
+    2: [1, 2], [1, 3], [2, 3]
+    3: [1, 2, 3]
+
+    input: [1, 2, 3, 4]
+
+    output:
+
+    0: []
+    1: [1], [2], [3], [4]
+    2: [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]
+    3: [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]
+    4: [1, 2, 3, 4]
+
+    N = number of elements in the array
+
+    N = 2, executions (number of subsets) = 4
+    N = 3, executions (number of subsets) = 8
+    N = 4, executions (number of subsets) = 16
+
+    2^N = number of subsets
+*/
+
+/*
+    Time complexity: N!
+
+    Example: Given an array of size N, to find all the permutations of the array
+
+    input: [1, 2, 3]
+
+    output:
+
+    [1, 2, 3]
+    [1, 3, 2]
+    [2, 1, 3]
+    [2, 3, 1]
+    [3, 1, 2]
+    [3, 2, 1]
+
+    executions = 6
+
+    input: [1, 2, 3, 4]
+
+    output:
+
+    [1, 2, 3, 4]
+    [1, 2, 4, 3]
+    [1, 3, 2, 4]
+    [1, 3, 4, 2]
+    [1, 4, 2, 3]
+    [1, 4, 3, 2]
+    [2, 1, 3, 4]
+    [2, 1, 4, 3]
+    [2, 3, 1, 4]
+    [2, 3, 4, 1]
+    [2, 4, 1, 3]
+    [2, 4, 3, 1]
+    [3, 1, 2, 4]
+    [3, 1, 4, 2]
+    [3, 2, 1, 4]
+    [3, 2, 4, 1]
+    [3, 4, 1, 2]
+    [3, 4, 2, 1]
+    [4, 1, 2, 3]
+    [4, 1, 3, 2]
+    [4, 2, 1, 3]
+    [4, 2, 3, 1]
+    [4, 3, 1, 2]
+    [4, 3, 2, 1]
+
+    executions = 24
+
+    input = [1, 2]  
+
+    output:
+
+    [1, 2]
+    [2, 1]
+
+    executions = 2
+
+    N = 2, executions = 2
+    N = 3, executions = 6
+    N = 4, executions = 24
+
+    For a given N, the number of executions is N!
 */
