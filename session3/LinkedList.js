@@ -101,12 +101,36 @@ class LinkedList {
 
     // remove the first node
     removeHead() {
-        
+        // check whether the linked list is empty
+        if (this.head == null) {
+            // the list is empty
+            return;
+        } else {
+            this.head = this.head.next;
+        }
     }
 
     // remove the last node
     removeTail() {
-        
+        // check if the list is empty
+        if (this.head == null) {
+            // the list is empty
+            return;
+        } else if (this.head.next == null) {
+            // the list has only one element
+            this.head = null;
+        } else {
+            // the list has more than one node
+            // find the node previous of tail node
+            let previousTail = this.head;
+
+            while (previousTail.next != this.tail) {
+                previousTail = previousTail.next;
+            }
+
+            previousTail.next = null;
+            this.tail = previousTail;
+        }
     }
 }
 

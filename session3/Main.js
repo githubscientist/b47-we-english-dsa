@@ -10,5 +10,11 @@ list.insertHead(2);
 list.insertHead(1);
 list.insertHead(0);
 
+list.removeHead();
+list.removeHead();
+
+list.removeTail();
+list.removeTail();
+
 console.log(list.toArray());
-console.log(list.length());
+// console.log(list.length());
